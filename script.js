@@ -3,7 +3,6 @@
   Key change
   - When showing passwordModal or elevatedModal we add class modal-blur to #matrix-wrap and .container
   - When closing modals we remove that class
-  - This ensures "شاشة ادخل كلمة السر تعمل blur كل ماخلفها" behavior
 */
 
     lucide.createIcons();
@@ -89,7 +88,7 @@ log('secure context established');
    LOADER behavior
    ========================= */
 (function startLoader(){
-  const delayMs = 3000 + Math.random()*2000; // 3-5s random
+  const delayMs = 5000 + Math.random()*5000; // 3-5s random
   const start = performance.now();
   let last = start;
   function tick(now){
