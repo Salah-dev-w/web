@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Dark Hacker</title>
+
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<body>
+<!-- =========================
+     LOADING SCREEN
+     ========================= -->
+<div id="loader" aria-hidden="false" role="dialog" aria-label="loading">
+  <div class="loader-inner" id="loaderInner">
+    <div class="skull" id="skull" aria-hidden="true">
+      <!-- simple skull svg -->
+      <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M45 45c3 1 5 3 5 7v3H14v-3c0-4 2-6 5-7" stroke="currentColor" />
+          <circle cx="24" cy="30" r="4" fill="currentColor"></circle>
+          <circle cx="40" cy="30" r="4" fill="currentColor"></circle>
+          <path d="M28 38c2 2 6 2 8 0" stroke="currentColor"></path>
+          <path d="M20 16c4-6 20-6 24 0v8c0 2-0 6-2 8" stroke="currentColor"></path>
+        </g>
+      </svg>
+    </div>
+    <div class="warn">red alert unauthorized access</div>
+    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="loading progress">
+      <i id="progressBar"></i>
+    </div>
+    <div class="loader-cap">initializing secure shell</div>
+  </div>
+</div>
+
+<!-- =========================
+     APP / MAIN
+     ========================= -->
+
+<div id="app" role="application" aria-hidden="true">
+  <div id="matrix-wrap"><canvas id="matrix"></canvas></div>
+
+  <div class="container" role="main">
+    <aside class="left fade-slide" id="leftPanel">
+      <div class="header-name">
+        <div class="typewriter" id="nameType">SAIDA CH</div>
+      </div>
+
+  <div class="portrait" aria-hidden="true" id="portrait" style="position:relative;overflow:hidden;">
+  <!-- صورتك فوق -->
+  <img id="userPhoto" src="profile.jpg" alt="portrait"
+       style="
+         position:absolute;
+         inset:0;
+         width:100%;
+         height:100%;
+         object-fit:cover;
+         z-index:3;
+         filter:grayscale(.15) contrast(1.15) brightness(.9);
+         mix-blend-mode:screen;
+       ">
+  <!-- طبقة تأثير أحمر مضبب فوق الصورة -->
+  <div class="moving-overlay"></div>
+
+
+</div>
+
+
+  <nav class="nav-list" aria-label="Sections">
+    <div class="nav-item" data-target="home"><span class="icon-dot"></span>Home</div>
+    <div class="nav-item" data-target="about"><span class="icon-dot"></span>About</div>
+    <div class="nav-item" data-target="skills"><span class="icon-dot"></span>Skills</div>
+    <div class="nav-item" data-target="projects"><span class="icon-dot"></span>Projects</div>
+    <div class="nav-item" data-target="education"><span class="icon-dot"></span>Education</div>
+    <div class="nav-item" data-target="interests"><span class="icon-dot"></span>Interests</div>
+    <div class="nav-item" data-target="contact"><span class="icon-dot"></span>Contact</div>
+  </nav>
+
+  <div style="margin-top:16px;display:flex;gap:10px">
+    <button class="btn" id="openPassword">unlock</button>
+    <button class="btn" id="toggleStealth">stealth</button>
+  </div>
+
+  <div style="margin-top:14px;font-size:12px;color:#a6a6a6;">
+    Accessibility
+    <label style="margin-left:8px">
+      <input type="checkbox" id="accessibilityToggle"> high contrast
+    </label>
+  </div>
+</aside>
+<div class="scroll-container">
+<main class="right fade-slide" id="mainContent" tabindex="0">
+  <!-- HOME -->
+  <section id="home" class="section">
+    <h3>Home</h3>
+    <div style="display:flex;gap:18px;align-items:flex-start">
+      <div style="flex:1">
+        <div style="font-weight:800;font-size:18px;margin-bottom:8px">Third-year Computer Science student | Junior Web Developer & Designer</div>
+        <p style="color:#bdbdbd">Saida is passionate about technology and art, combining programming with visual creativity. She’s interested in web development, UI design, and applying her technical skills to meaningful fields like health and medicine.</p>
+      </div>
+      <div style="width:160px">
+        <div class="tags">
+          <span class="tag">Web Dev</span>
+          <span class="tag">UI/UX</span>
+          <span class="tag">C++</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <h3>About</h3>
+    <p>Third-year Computer Science student, organized and curious, with a strong passion for self-learning and exploring new technologies. Skilled in digital art and creative design, which enhances her ability to create user-friendly and visually appealing interfaces</p>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <h3>Skills</h3>
+    <div class="tags">
+      <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+      <span class="tag">C / C++</span><span class="tag">Python</span><span class="tag">Figma</span><span class="tag">MySQL</span>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <h3>Projects</h3>
+    <ul>
+      <li>Educational Website – Designed an interactive web interface for teaching programming to beginners.</li>
+      <li>Smart Health App UI – Created a user interface for a medical application focused on managing appointments and medication reminders.</li>
+      <li>Digital Artworks – Produced digital illustrations that combine technology with creative artistic expression.</li>
+    </ul>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section">
+    <h3>Education</h3>
+    <p>Currently studying at the university, majoring in Computer Science – Third Year.</p>
+<p>Completed a Baccalaureate in Natural Sciences, providing a solid background in analytical and logical thinking.</p>
+  </section>
+
+  <!-- INTERESTS -->
+  <section id="interests" class="section">
+    <h3>Interests</h3>
+    <div class="tags">
+      <span class="tag">Medicine & Health</span><span class="tag">Digital Art & Creativity</span><span class="tag">Building Educational & Tech Projects</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <h3>Contact</h3>
+ <p><i data-lucide="mail"></i>
+    <a href="mailto:saida.dev@example.com" data-coded="*******@example.com" data-real="saida.dev@example.com">!?</a>
+  </p>
+
+  <p><i data-lucide="linkedin"></i>
+    <a href="https://linkedin.com/in/saidadev" target="_blank" data-coded="linkedin.com/in/*******" data-real="linkedin.com/in/saidadev">!?</a>
+  </p>
+
+  <p><i data-lucide="github"></i>
+    <a href="https://github.com/saidadev" target="_blank" data-coded="github.com/*******" data-real="github.com/saidadev">!?</a>
+  </p>
+
+  <p><i data-lucide="instagram"></i>
+    <a href="https://instagram.com/saida.art.tech" target="_blank" data-coded="@*********" data-real="@saida.art.tech">!?</a>
+  </p>
+  </section>
+</main>
+  </div>
+</div>
+  <!-- PASSWORD MODAL -->
+
+  <div class="modal" id="passwordModal" role="dialog" aria-modal="true" style="display:none">
+    <div class="label">enter password to unlock</div>
+    <div class="input-row">
+      <!-- this is a fake visual input that shows per-character flicker behavior -->
+      <div id="flickerInputHolder" style="flex:1;display:flex;gap:6px;align-items:center;background:rgba(255,255,255,0.01);padding:8px;border-radius:8px">
+        <!-- characters will be added here as spans -->
+        <div style="color:#7b7b7b;font-family:monospace;font-size:13px">password</div>
+        <div id="flickerInput" style="display:flex;gap:6px;align-items:center"></div>
+      </div>
+      <button class="btn" id="submitPass">go</button>
+    </div>
+    <div class="hint">tip: password for regular unlock is hacker elevated password is root</div>
+  </div>
+
+  <!-- STEALTH / ELEVATED REVEAL MODAL -->
+
+  <div class="modal" id="elevatedModal" style="display:none">
+    <div class="label">enter elevated password to reveal contact</div>
+    <div class="input-row">
+      <input id="elevatedInput" type="password" aria-label="elevated password" placeholder="elevated password">
+      <button class="btn" id="submitElevated">reveal</button>
+    </div>
+    <div class="hint">this will reveal sensitive details</div>
+  </div>
+
+  <!-- bottom console pseudo status bar -->
+
+  <div class="status-bar" aria-hidden="false">
+    <div class="log" id="sysLog" role="log" aria-live="polite"></div>
+    <div class="controls">
+      <div style="font-size:12px;color:#aaa">status</div>
+      <div style="display:flex;gap:6px">
+        <button class="btn" id="clearLog" style="padding:6px 8px">clear</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- custom cursor -->
+
+  <div class="custom-cursor" id="customCursor" aria-hidden="true"></div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
