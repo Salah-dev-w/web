@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Access Denied - No Mobile</title>
+<style>
+:root{
+  --bg:#000;
+  --red:#ff1b2d;
+  --muted:#111;
+  --glass: rgba(255,255,255,0.03);
+  --glass-2: rgba(255,255,255,0.02);
+  --text:#e6e6e6;
+  --accent:var(--red);
+  --glow: 0 0 12px rgba(255,27,45,0.65);
+  --cursor-size: 18px;
+  --reduced-motion: 0;
+}
+
+/* Reset */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Courier New', monospace;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100vh;
+}
+
+/* Glitch text */
+.glitch{
+  font-size:1.5rem;
+  font-weight:bold;
+  position:relative;
+  color:var(--red);
+  text-shadow:0 0 10px var(--red);
+  animation: flicker 2s infinite;
+}
+
+.glitch::before,
+.glitch::after{
+  content:attr(data-text);
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:transparent;
+  overflow:hidden;
+  color:var(--red);
+}
+
+.glitch::before{
+  left:2px; text-shadow:-2px 0 var(--accent);
+  animation: glitchTop 2s infinite;
+}
+.glitch::after{
+  left:-2px; text-shadow:2px 0 var(--accent);
+  animation: glitchBottom 2s infinite;
+}
+
+@keyframes flicker {
+  0%,18%,22%,25%,53%,57%,100%{opacity:1;}
+  20%,24%,55%{opacity:0.5;}
+}
+@keyframes glitchTop{
+  0%{clip-path:inset(0 0 90% 0);}
+  20%{clip-path:inset(0 0 80% 0);}
+  40%{clip-path:inset(0 0 70% 0);}
+  60%{clip-path:inset(0 0 50% 0);}
+  80%{clip-path:inset(0 0 60% 0);}
+  100%{clip-path:inset(0 0 90% 0);}
+}
+@keyframes glitchBottom{
+  0%{clip-path:inset(90% 0 0 0);}
+  20%{clip-path:inset(80% 0 0 0);}
+  40%{clip-path:inset(70% 0 0 0);}
+  60%{clip-path:inset(50% 0 0 0);}
+  80%{clip-path:inset(60% 0 0 0);}
+  100%{clip-path:inset(90% 0 0 0);}
+}
+
+/* Warning box */
+.warning{
+  background:var(--glass);
+  border:1px solid var(--red);
+  box-shadow:0 0 20px rgba(255,27,45,0.3);
+  border-radius:8px;
+  padding:2rem 3rem;
+  text-align:center;
+  backdrop-filter:blur(6px);
+  animation: pop 1.2s ease-out;
+}
+@keyframes pop{
+  from{transform:scale(0.8);opacity:0;}
+  to{transform:scale(1);opacity:1;}
+}
+small{
+  color:#888;
+  display:block;
+  margin-top:1rem;
+  font-size:0.8rem;
+}
+</style>
+</head>
+<body>
+  <div class="warning">
+    <div class="glitch" data-text="ACCESS DENIED">ACCESS DENIED</div>
+    <p style="margin-top:1rem;">This system is not available on mobile devices</p>
+    <small>Use a desktop environment to proceed</small>
+  </div>
+
+<script>
+// auto redirect to index.html if user is on PC
+(function(){
+  const ua = navigator.userAgent || navigator.vendor || window.opera;
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua) || window.innerWidth <= 700;
+  if(!isMobile){
+    window.location.href = "index.html";
+  }
+setInterval(() => {
+  if (window.innerWidth > 768) {
+    window.location.href = "index.html"
+  }
+}, 2000)
+})();
+</script>
+</body>
+</html>
+
+
