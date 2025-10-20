@@ -370,12 +370,6 @@ function closeModals(){
   matrixWrap.classList.remove('modal-blur');
 
 }
-
-document.addEventListener('keydown', (e) => {
-  if (e.key.toLowerCase() === 'f') {
-    container.classList.remove('modal-blur')
-  }
-})
 function passwordKeyHandler(e){
   
   if(e.key === 'Backspace'){
